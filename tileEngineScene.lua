@@ -36,6 +36,7 @@ local lightingModel                         -- Reference to the lighting model
 local tileEngineViewControl                 -- Reference to the UI view control
 local lastTime                              -- Used to track how much time passes between frames
 local cameraDirection                       -- Tracks the direction of the camera
+local topLightId                            -- Will track the ID of the top light
 
 -- -----------------------------------------------------------------------------------
 -- This will load in the example sprite sheet.  Replace this with the sprite
@@ -290,8 +291,13 @@ function scene:create( event )
         tileEngineInstance = tileEngine
     })
 
+    -- Add a light at the top part of the room.
+    topLightId = lightingModel.addLight({
+        row=5,column=8,r=1,g=1,b=0.7,intensity=0.75,radius=9
+    })
+
     -- Finally, set the ambient light to white light with medium-high intensity.
-    lightingModel.setAmbientLight(1,1,1,0.7)
+    lightingModel.setAmbientLight(1,1,1,0.15)
 end
 
 
